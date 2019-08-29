@@ -101,13 +101,16 @@ function App() {
     setCartCount(deletedItem);
   }
   const updateQuantity = (id, value) => {
-    let newProduct = product.product.map( item => {
-      if (item.id === id){
-        item.quantity = value
+      let newProduct = product.product.map( item => {
+        if (item.id === id){
+          item.quantity = value
+        }
+        return item;
+      });
+      setProduct( {product: newProduct, ...product } );
+      if(value === 0){
+        console.log("value 0");
       }
-      return item;
-    });
-    setProduct( {product: newProduct, ...product } );
   }
 
   return (
@@ -130,6 +133,7 @@ function App() {
         product={cartCount}
         backToShop={backToShop}
         deleteItem={deleteItem}
+        updateQuantity={updateQuantity}
       /> }
     </div>
   );

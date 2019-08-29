@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ShowProduct({ product, backToShop, deleteItem }) {
+function ShowProduct({ product, backToShop, deleteItem, updateQuantity }) {
     const totalPrice = () => {
         let sumTotal = 0;
         let fialsetTotal = 0;
@@ -40,12 +40,28 @@ function ShowProduct({ product, backToShop, deleteItem }) {
                                 <th scope="row"> {item.id} </th>
                                 <td> {item.name} </td>
                                 <td> <img alt={item.name} src={item.imageurl} style={ { height: 40, width: 50 } } /> </td>
-                                <td> { item.quantity } </td>
+                                <td> 
+                                    <div className="form-group row mt-2">
+                                        <div className="col-6">
+                                            <input 
+                                                className="form-control"
+                                                style={ { width: 80 } } 
+                                                type="number" 
+                                                name="quantity" 
+                                                value={item.quantity} 
+                                                id="quantity"
+                                                min="1"
+                                                max="10"
+                                                onChange={ (e) => updateQuantity(item.id, e.target.value) } 
+                                            />
+                                        </div>
+                                    </div> 
+                                </td>
                                 <td> ${item.price} </td>
                                 <td id="subtotal"> ${item.quantity*item.price} { `(${item.quantity} X ${item.price})` } </td>
                                 <td> 
                                     <button 
-                                        className="btn btn-danger"
+                                        className="btn btn-danger mb-5"
                                         onClick={ ()=> deleteItem(item.id) }
                                     > Delete 
                                     </button>  

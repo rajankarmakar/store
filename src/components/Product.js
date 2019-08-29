@@ -26,6 +26,8 @@ function Product({ product, addToCart, updateQuantity }) {
                                     name="quantity" 
                                     value={item.quantity} 
                                     id="quantity"
+                                    min="1" 
+                                    max="10"
                                     onChange={ (e) => updateQuantity(item.id, e.target.value) } 
                                 />
                             </div>
